@@ -15,12 +15,14 @@ namespace GeneralCard.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new Contact();
+            return View(model);
         }
 
-
+        
         public IActionResult Contact()
         {
+
             return View();
         }
 
@@ -29,5 +31,27 @@ namespace GeneralCard.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //[HttpPost]
+        //public IActionResult RegisterContact(IFormCollection iforms)
+        //{
+        //    var a = iforms["name"];
+
+        //    return Json(iforms);
+        //}
+
+        [HttpPost]
+        public IActionResult RegisterContact(Contact form)
+        {
+            var a = form.Name;
+            var b = form.Service;
+            return RedirectToAction("Contact");
+        }
+
+
+        public IActionResult Re() {
+
+            return new StatusCodeResult(401);
+            } 
     }
 }
